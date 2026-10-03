@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Actors</title>
+  </head>
+
+  <body>
+    <h2>Actors by Wiam</h2>
+
+    <form>
+      <label for="form1_age">What is your age </label>
+      <input
+        type="number"
+        id="form1_age"
+        name="form1_age"
+        min="10"
+        max="50"
+        step="2"
+        value="30"
+      />
+      <br />
+
+      <label for="form1_nick">What is your nickname </label>
+      <input type="text" id="form1_nick" name="form1_nick" autofocus /> <br />
+
+      <input
+        type="button"
+        onclick="resolveForm()"
+        value="Get values from form"
+      />
+    </form>
+
+    <p id="result">This text will be replaced</p>
+
+    <script>
+      function resolveForm() {
+        console.log("Getting form values");
+        age = document.getElementById("form1_age").value;
+        nick = document.getElementById("form1_nick").value;
+        confirmed = confirm("Are these the values? " + age + " and " + nick);
+
+        out = document.getElementById("result");
+        if (confirmed) {
+          out.innerHTML = "Values were confirmed";
+        } else {
+          out.innerHTML = "Values were not confirmed";
+        }
+      }
+    </script>
+
+    <form>
+      <label>Peter Pan</label>
+      <input type="password" id="actor" value="Robin Williams" />
+
+      <br /><br />
+
+      <label>Who is the actor</label>
+      <input type="text" id="guess" />
+
+      <br /><br />
+
+      <button type="button" onclick="checkActor()">Check the guess</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+      let correct = 0;
+      let notCorrect = 0;
+
+      function checkActor() {
+        let actor = document.getElementById("actor").value;
+        let guess = document.getElementById("guess").value;
+
+        if (actor == guess) {
+          correct++;
+          alert("That's right");
+        } else {
+          notCorrect++;
+          alert("Better luck next time");
+        }
+
+        document.getElementById("result").innerHTML =
+          "Correct: " + correct + " Not Correct: " + notCorrect;
+      }
+    </script>
+
+    <div>
+      <img
+        id="foodPic"
+        src="Apple.jpg"
+        width="150"
+        height="150"
+        onclick="updatePic()"
+      />
+    </div>
+
+    <script>
+      let usePic = 1;
+
+      function updatePic() {
+        pic = document.getElementById("foodPic");
+
+        switch (usePic) {
+          case 1:
+            pic.src = "Apple.jpg";
+            usePic = 2;
+            break;
+
+          case 2:
+            pic.src = "Tiramisu.jpg";
+            usePic = 3;
+            break;
+
+          case 3:
+            pic.src = "IceCream.jpg";
+            usePic = 1;
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
