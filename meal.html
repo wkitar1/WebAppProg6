@@ -35,6 +35,27 @@
     </script>
 
     <form>
+      <label for="cuisine">Enter cuisine type</label>
+      <input type="text" id="cuisine" value="Italian" /><br />
+
+      <label for="beverage">Enter beverage choice</label>
+      <input type="text" id="beverage" value="water" /><br />
+
+      <button type="button" onclick="updateMeal()">Update the meal plan</button>
+    </form>
+    <script>
+      function updateMeal() {
+        let cuisine = document.getElementById("cuisine").value;
+        let beverage = document.getElementById("beverage").value;
+
+        my_meal_plan["cuisine"] = cuisine;
+        my_meal_plan["beverage"] = beverage;
+
+        document.getElementById("results").innerHTML = my_meal_plan;
+      }
+    </script>
+
+    <form>
       <label for="form1_age">What is your age </label>
       <input
         type="number"
