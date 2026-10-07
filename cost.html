@@ -33,35 +33,87 @@
       placeholder="Enter the discount rate"
     />
     <button type="button" onclick="doDiscount()">Show costs</button>
-    <p id="results">
-      <script>
-        function doDiscount() {
-          number = Number(document.getElementById("numberItems").value);
-          cost = Number(document.getElementById("itemCost").value);
-          discountAt = Number(
-            document.getElementById("numberForDiscount").value,
-          );
-          discountRate = Number(document.getElementById("DiscountRate").value);
-          let costs = "";
-          for (
-            let checkCount = number;
-            checkCount <= 5 * number;
-            checkCount += number
-          ) {
-            let totalCost;
-            if (checkCount < discountAt) {
-              totalCost = checkCount * cost;
-            } else {
-              totalCost =
-                discountAt * cost +
-                (checkCount - discountAt) * cost * (1 - discountRate);
-            }
-            costs += " checkCount " + checkCount + " is " + totalCost + ";";
+    <p id="results"></p>
+    <script>
+      function doDiscount() {
+        number = Number(document.getElementById("numberItems").value);
+        cost = Number(document.getElementById("itemCost").value);
+        discountAt = Number(document.getElementById("numberForDiscount").value);
+        discountRate = Number(document.getElementById("DiscountRate").value);
+        let costs = "";
+        for (
+          let checkCount = number;
+          checkCount <= 5 * number;
+          checkCount += number
+        ) {
+          let totalCost;
+          if (checkCount < discountAt) {
+            totalCost = checkCount * cost;
+          } else {
+            totalCost =
+              discountAt * cost +
+              (checkCount - discountAt) * cost * (1 - discountRate);
           }
-          document.getElementById("results").innerHTML = "Costs are: " + costs;
+          costs += " checkCount " + checkCount + " is " + totalCost + ";";
         }
-      </script>
-    </p>
+        document.getElementById("results").innerHTML = "Costs are: " + costs;
+      }
+    </script>
+
+    <form>
+      <input
+        type="radio"
+        id="product"
+        name="operation"
+        value="mul"
+        onclick="chooseOp()"
+        checked
+      />
+      <label for="product">product</label><br />
+
+      <input
+        type="radio"
+        id="sum"
+        name="operation"
+        value="add"
+        onclick="chooseOp()"
+      />
+      <label for="sum">sum</label><br />
+
+      <input
+        type="radio"
+        id="divide"
+        name="operation"
+        value="div"
+        onclick="chooseOp()"
+      />
+      <label for="divide">divide</label><br />
+    </form>
+
+    <script>
+      function chooseOp() {
+        let count = Number(document.getElementById("numberItems").value);
+        let discountAt = Number(
+          document.getElementById("numberForDiscount").value,
+        );
+
+        let value;
+
+        if (document.getElementById("product").checked) {
+          value = count * discountAt;
+          document.getElementById("results").innerHTML =
+            count + " times " + discountAt + " is " + value;
+        } else if (document.getElementById("sum").checked) {
+          value = count + discountAt;
+          document.getElementById("results").innerHTML =
+            count + " plus " + discountAt + " is " + value;
+        } else if (document.getElementById("divide").checked) {
+          value = count / discountAt;
+          document.getElementById("results").innerHTML =
+            count + " divided by " + discountAt + " is " + value;
+        }
+      }
+    </script>
 
     <form>
       <label for="form1_age">What is your age </label>
